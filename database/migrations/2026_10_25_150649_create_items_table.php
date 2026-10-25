@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('category_id')->constrained('categories')->restrictOnDelete();
+            $table->foreignId('category_id')
+                ->constrained('categories')
+                ->restrictOnDelete();
 
             $table->string('name');
             $table->decimal('price', 12, 2);
-            $table->integer('stock');
-            
+            $table->unsignedInteger('stock')->default(0);
             $table->timestamps();
         });
     }
